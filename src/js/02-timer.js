@@ -35,16 +35,16 @@ const datePickr = flatpickr(ref.selector, options);
 ref.start.addEventListener('click', start);
  
 function start() {
-  // const startTime = Date.now();
   ref.start.disabled = true;
   setInterval(() => {
     const currentTime = Date.now();
     const deltaTime = datePickr.selectedDates[0].getTime() - currentTime;
+    if (deltaTime <= 0) { return; };
     const { days, hours, minutes, seconds } = convertMs(deltaTime);
       ref.days.textContent = `${days}`;
       ref.hours.textContent = `${hours}`;
       ref.minutes.textContent = `${minutes}`;
-      ref.seconds.textContent = `${seconds}`;
+    ref.seconds.textContent = `${seconds}`;
   },1000)
   }
 
